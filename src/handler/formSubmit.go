@@ -2,14 +2,13 @@ package handler
 
 import (
 	"fmt"
-	"github.com/axgle/mahonia"
+	//"github.com/axgle/mahonia"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net/http"
-	"os"
+	//"os"
 	"pasteTest/src/DBS"
 	"pasteTest/src/model"
-	"strings"
 )
 var user model.UserModel
 var realUrl model.UrlModel
@@ -35,14 +34,18 @@ func FormPerform(c*gin.Context){
 func ContentPerform(c*gin.Context){//根据url查找需要展示的内容
 	url := c.PostForm("url")
 	name := url + ".txt"
-	content,err := os.Open(name)
-	decoder := mahonia.NewDecoder("utf-8")
-	fd,_ := ioutil.ReadAll(decoder.NewReader(content))
-	contentstr := strings.Split(string(fd),"\n")
-	if err !=nil{
-		fmt.Println("read fail",err)
-	}
-	fmt.Println(contentstr)
+	fd,_ := ioutil.ReadFile(name)
+	//fmt.Println("读出名称",url)
+	//content,err := os.Open(name)
+	//fmt.Println("打开成功",content)
+	//decoder := mahonia.NewDecoder("utf-8")
+	//fd,_ := ioutil.ReadAll(decoder.NewReader(content))
+	//fmt.Println("读出成功",fd)
+	contentstr := string(fd)
+	//if err !=nil{
+	//	fmt.Println("read fail",err)
+	//}
+	fmt.Println("传输成功",contentstr)
 	c.JSON(http.StatusOK,gin.H{
 		"content": contentstr,
 	})
@@ -55,12 +58,12 @@ func UrlBind(c*gin.Context){
 		fmt.Println("绑定成功")
 		fmt.Println("realUrl",realUrl.Url)
 	}
-
-	fmt.Println("write", user.Content)
+	//fmt.Println("write", user.Content)
 	str := realUrl.Url + ".txt"
+	fmt.Println("写入名称",str)
 	code := user.Content
 	content := []byte(code)
-	fmt.Println("write", user.Content)
+	fmt.Println("写入成功", content)
 	ioutil.WriteFile(str,content,0666)
 	url := realUrl.Url
 	name :=user.Syntax

@@ -13,7 +13,6 @@
     <!--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"  crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/pastebin.css">
     <link
@@ -37,15 +36,25 @@
     </nav>
 </div>
 <div class="outer-container" >
-   Poster <input type="text" class="input" id="poster"><br><br><br>
-    Syntax <input type="text" class="input" id="syntax"><br><br><br>
-    Content <textarea type="'text" class="input inner-container" id="content"></textarea><br><br><br>
+   Poster <input type="text" class="input" id="poster"><br><br>
+    Syntax
+<!--    、<input type="text" class="input" id="syntax"><br><br><br><div class="dropdown">-->
+    <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+        select language&nbsp&nbsp&nbsp&nbsp
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+</div>
+<br>&nbsp &nbsp &nbspContent <textarea type="'text" class="input inner-container" id="content"></textarea><br><br><br>
 
 </div>
 <a id="pasteHref">
-    <button id="Paste" type="button" onclick="submit();Insert()">Paste!</button>
+    <button id="Paste" type="button" onclick="submit();getUrl();Insert()">Paste!</button>
 </a>
-<script>getUrl()</script>
+<!--<script></script>-->
 
 </body>
 </html>

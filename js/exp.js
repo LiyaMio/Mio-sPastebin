@@ -17,7 +17,9 @@ function getPoster() {
             content = data.content
             $("#getContent").append(content)
             $("#getPoster").append(pos)
-            alert(data.content)
+            console.log(data.content)
+            // alert(url)
+            hljs.initHighlightingOnLoad()
         }
     });
 
@@ -43,6 +45,7 @@ function submit() {
             content:$("#content").val(),
         },
     });
+    localStorage.setItem("posId",$("#poster").val())
 
 }
 function getUrl() {

@@ -1,5 +1,19 @@
-#contentBack{
-    padding-left: 3%;
-    padding-right: 3%;
+#getContent{
+    padding-left: 5%;
     background-color: rgb(238,238,238);
+    font-family: Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace!important;
+    border: solid;
+    border: hidden;
+    margin-left: 5%;
+    margin-right:5%;
+    white-space: pre-line;
+}
+#getPoster{
+    padding-left:5%;
+    pading-top:12%;
+    padding-bottom: 0.5%;
+    font-family: cursive;
+}
+#Pastebin{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }

@@ -44,3 +44,28 @@
 .inner-container::-webkit-scrollbar {
     display: none;
 }
+#Pastebin{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+#dropdownMenuButton{
+    left:10%;
+    width:14.7%;
+    background-color:white;
+    color: rgb(7, 5, 4);
+    font-family: cursive;
+    /*padding-top: 5px;*/
+    position: absolute;!important;
+}
+.dropdown-menu{
+    min-width: 14.7%;
+}
+.dropdown-item{
+    background-color: white;
+    font-family: cursive;
+    font-size: 10px;
+    color:rgb(7,5,4);
+}
+.dropdown-item:active{
+    background-color:rgb(248,249,250);
+    color:rgb(7,5,4);
+}
