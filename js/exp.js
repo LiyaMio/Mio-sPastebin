@@ -36,12 +36,14 @@ function search() {
     
 }
 function submit() {
+    selectLang();
+    var selecSyn = localStorage.getItem("syntaxSelected")
     $.ajax({
         type:"POST",
         url:"/submit",
         data:{
             poster:$("#poster").val(),
-            syntax:$("#syntax").val(),
+            syntax: selecSyn,
             content:$("#content").val(),
         },
     });
@@ -74,4 +76,28 @@ function Insert(){
         },
 
     });
+}
+function selectLang() {
+    var myselect=document.getElementById("select")
+    var index=myselect.selectedIndex;
+    localStorage.setItem("syntaxSelected",myselect.options[index].text)
+    console.log(myselect.options[index].text)
+}
+function appendLang() {
+    var selectSyn = localStorage.getItem("syntaxSelected")
+    var cname = "language-" + selectSyn
+    $("#getContent").attr("class",cname)
+    // class="language-"
+}
+function appendoption() {
+    $("#select").append(
+        "   <option id=\"la1\">go</option>" +
+        "  <option id=\"la2\" >c++</option>" +
+        "<option id=\"la3\">c#</option>" +
+        "<option id=\"la4\">java</option>" +
+        "<option id=\"la5\">javascript</option>" +
+        "<option id=\"la6\">html</option>"
+
+    )
+
 }

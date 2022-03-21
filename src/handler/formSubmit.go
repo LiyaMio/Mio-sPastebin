@@ -2,6 +2,8 @@ package handler
 
 import (
 	"fmt"
+	"strings"
+
 	//"github.com/axgle/mahonia"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
@@ -35,16 +37,8 @@ func ContentPerform(c*gin.Context){//根据url查找需要展示的内容
 	url := c.PostForm("url")
 	name := url + ".txt"
 	fd,_ := ioutil.ReadFile(name)
-	//fmt.Println("读出名称",url)
-	//content,err := os.Open(name)
-	//fmt.Println("打开成功",content)
-	//decoder := mahonia.NewDecoder("utf-8")
-	//fd,_ := ioutil.ReadAll(decoder.NewReader(content))
-	//fmt.Println("读出成功",fd)
 	contentstr := string(fd)
-	//if err !=nil{
-	//	fmt.Println("read fail",err)
-	//}
+
 	fmt.Println("传输成功",contentstr)
 	c.JSON(http.StatusOK,gin.H{
 		"content": contentstr,
@@ -61,7 +55,9 @@ func UrlBind(c*gin.Context){
 	//fmt.Println("write", user.Content)
 	str := realUrl.Url + ".txt"
 	fmt.Println("写入名称",str)
-	code := user.Content
+	tmp := user.Content
+	code := strings.Replace(tmp,"<","&lt;",-1)
+	code = strings.Replace(code,">","&gt;",-1)
 	content := []byte(code)
 	fmt.Println("写入成功", content)
 	ioutil.WriteFile(str,content,0666)
