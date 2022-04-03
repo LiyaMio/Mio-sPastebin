@@ -74,7 +74,7 @@ func deleteRowDemo(code string) {
 
 }
 func QueryMutiRowTime() {
-	sqlStr := "select code from dataset where SUBDATE(now(),interval 1 minute ) > nowtime"
+	sqlStr := "select code from dataset where SUBDATE(now(),interval 1 hour ) > nowtime"
 	var timeList []string
 	rows,err:= Db.Query(sqlStr)
 

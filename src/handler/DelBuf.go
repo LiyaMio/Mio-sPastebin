@@ -7,7 +7,7 @@ import (
 )
 
 func CleanData(){
-	ticker := time.NewTicker(time.Minute*10)
+	ticker := time.NewTicker(time.Minute*1)
 	fmt.Println("current ",time.Now())
 	for {
 			tm:=<-ticker.C
