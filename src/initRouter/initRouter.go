@@ -10,6 +10,7 @@ import (
 func SetupRouter()*gin.Engine{
 	router := gin.Default()
 	DBS.Init()
+	go handler.CleanData()
 	router.LoadHTMLGlob( "html/*" )
 	router.StaticFS("/js", http.Dir("./js/"))
 	router.StaticFS("/css", http.Dir("./css/"))

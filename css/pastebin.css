@@ -72,12 +72,15 @@
 .selectpicker{
     left:10%;
     width:14.9%;
-    height: 4.5%;
+    height: 30px;
     border-radius: 2.5px 2.5px 2.5px 2.5px;
     background-color:white;
     color: rgb(7, 5, 4);
     font-family: cursive;
     /*padding-top: 5px;*/
+    position: absolute;!important;
+}
+#select{
     position: absolute;!important;
 }
 option{

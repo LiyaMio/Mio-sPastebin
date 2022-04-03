@@ -59,11 +59,14 @@ function getUrl() {
             str  = data.url
             exhibit = "/" + data.url
             // alert(exhibit)
+            localStorage.setItem("exhibit",exhibit)
             $("#pasteHref").attr("href", exhibit)
+            // windows.location.href=exhibit;
             localStorage.setItem("url",str)
         }
     });
 }
+
 function Insert(){
     var nextUrl =localStorage.getItem("url")
     // alert(nextUrl)
@@ -91,12 +94,29 @@ function appendLang() {
 }
 function appendoption() {
     $("#select").append(
-        "   <option id=\"la1\">go</option>" +
-        "  <option id=\"la2\" >c++</option>" +
-        "<option id=\"la3\">c#</option>" +
-        "<option id=\"la4\">java</option>" +
-        "<option id=\"la5\">javascript</option>" +
-        "<option id=\"la6\">html</option>"
+        " <option  disabled>select language</option>"+
+        " <option  >bash</option>"+
+        " <option >css</option>"+
+    "   <option >c++</option>" +
+        "  <option  >c#</option>" +
+        "  <option  >diff</option>" +
+        "  <option  >markdown</option>" +
+        "<option >html</option>" +
+        "<option >go</option>" +
+        "<option >java</option>" +
+        "<option >javascript</option>" +
+        "<option >json</option>" +
+        "<option >lua</option>" +
+        "<option >obj-c</option>" +
+        "<option >php</option>" +
+        "<option >python</option>"+
+        "<option >r</option>"+
+        "<option >ruby</option>"+
+        "<option >rust</option>"+
+        "<option >scss</option>"+
+        "<option >sql</option>"+
+        "<option >vb</option>"+
+        "<option >xml</option>"
 
     )
 
