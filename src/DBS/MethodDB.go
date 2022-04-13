@@ -90,8 +90,8 @@ func QueryMutiRowTime() {
 			return
 		}
 		timeList =append(timeList,ans)
-		deleteRowDemo(ans)
 		os.Remove(ans)
+		deleteRowDemo(ans)
 		fmt.Println("url : \n",ans)
 	}
 }

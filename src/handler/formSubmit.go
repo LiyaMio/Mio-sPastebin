@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"pasteTest/src/Encryption"
 	"strings"
 	//"github.com/axgle/mahonia"
 	"github.com/gin-gonic/gin"
@@ -35,13 +36,15 @@ func FormPerform(c*gin.Context){
 }
 func ContentPerform(c*gin.Context){//根据url查找需要展示的内容
 	url := c.PostForm("url")
+	key := c.PostForm("priK")
 	name := url + ".txt"
 	fd,_ := ioutil.ReadFile(name)
-	contentstr := string(fd)
+	fmt.Println(string(fd))
+	contentstr,_ := Encryption.AesCBCDncrypt(fd,[]byte(key))
 	DBS.UpdateTime(url)
 	fmt.Println("传输成功",contentstr)
 	c.JSON(http.StatusOK,gin.H{
-		"content": contentstr,
+		"content": string(contentstr),
 	})
 	fmt.Println("url获取查询成功")
 }
@@ -58,13 +61,17 @@ func UrlBind(c*gin.Context){
 	tmp := user.Content
 	code := strings.Replace(tmp,"<","&lt;",-1)
 	code = strings.Replace(code,">","&gt;",-1)
-	content := []byte(code)
+	key:=Encryption.AesKey(code)
+	content,_:=Encryption.AesCBCEncrypt([]byte(code),key)
 	fmt.Println("写入成功", content)
 	ioutil.WriteFile(str,content,0666)
 	url := realUrl.Url
 	name :=user.Syntax
 	DBS.StructInsert(url,name,str)
 	fmt.Println("数据绑定成功")
+	c.JSON(http.StatusOK,gin.H{
+		"key":string(key),
+	})
 	//DBS.QueryMutiRowTime()
 
 }

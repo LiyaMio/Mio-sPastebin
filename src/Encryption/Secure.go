@@ -1,16 +1,13 @@
 package Encryption
 
 import (
-	"log"
+	"crypto/md5"
+	"encoding/hex"
 )
 
-func DataEncrypt(content []byte)([]byte,[]byte){
-	priK,pubK := GenRsaKey()
-	log.Println("your prikey",string(priK))
-	log.Println("your pubkey",string(pubK))
-	ciphertext := RsaEncrypt(content, pubK)
-	return ciphertext,priK
+func AesKey(v string) []byte{
+	d := []byte(v)
+	m := md5.New()
+	m.Write(d)
+	return []byte(hex.EncodeToString(m.Sum(nil)))
 }
-//func DataDncrypt(priK string,ciphertext string)string{
-//
-//}

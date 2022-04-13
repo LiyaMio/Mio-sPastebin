@@ -2,7 +2,7 @@
 function getPoster() {
     var pos=localStorage.getItem("posId");
     var Url = window.location.pathname;
-    // var priK=prompt("please input your key:","share key")
+    var priK=prompt("please input your key:","share key")
     Url = Url.substring(Url.lastIndexOf("/")+1,Url.length);
     $.ajax({
         type: 'POST',
@@ -10,7 +10,7 @@ function getPoster() {
         dataType: "JSON",
         data:{
             url:Url,
-            // priK:priK,
+            priK:priK,
         },
         success: function (data) {
             content = data.content
@@ -62,7 +62,7 @@ function getUrl() {
             $("#pasteHref").attr("href", exhibit)
             localStorage.setItem("url",str)
             Insert()
-            // console.log("本地保存 ",localStorage.getItem("url"))
+            console.log("本地保存 ",localStorage.getItem("url"))
         }
     });
 }
@@ -88,19 +88,15 @@ function Insert(){
         data:{
           url:nextUrl,
         },
-        // success: function (data) {
-        //     p = data.p
-        //     // alert("succcess")
-        //     var r=confirm(p)
-        //     if(r==true)
-        //     {
-        //         copy(p)
-        //         submit()
-        //         // getUrl()
-        //         // alert("复制成功")
-        //     }
-        //     // alert(p)
-        // },
+        success: function (data) {
+            key = data.key
+            var r=confirm(key)
+            if(r==true)
+            {
+                copy(key)
+                alert("复制成功")
+            }
+        },
 
     });
 }
