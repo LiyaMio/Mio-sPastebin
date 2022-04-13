@@ -56,8 +56,8 @@ func UrlBind(c*gin.Context){
 	str := realUrl.Url + ".txt"
 	fmt.Println("写入名称",str)
 	tmp := user.Content
-	code := strings.Replace(tmp,"<","&lt;",-1)
-	code = strings.Replace(code,">","&gt;",-1)
+	code := strings.Replace(tmp,"&lt;","&lt;",-1)
+	code = strings.Replace(code,"&gt;","&gt;",-1)
 	content := []byte(code)
 	fmt.Println("写入成功", content)
 	ioutil.WriteFile(str,content,0666)

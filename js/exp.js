@@ -1,24 +1,22 @@
 
 function getPoster() {
     var pos=localStorage.getItem("posId");
-    // alert(pos);
-    var url = window.location.pathname;
-    url = url.substring(url.lastIndexOf("/")+1,url.length);
-    // alert(url);
+    var Url = window.location.pathname;
+    // var priK=prompt("please input your key:","share key")
+    Url = Url.substring(Url.lastIndexOf("/")+1,Url.length);
     $.ajax({
         type: 'POST',
         url: "/getPoster",
         dataType: "JSON",
         data:{
-            url:url,
+            url:Url,
+            // priK:priK,
         },
         success: function (data) {
-
             content = data.content
             $("#getContent").append(content)
             $("#getPoster").append(pos)
             console.log(data.content)
-            // alert(url)
             hljs.initHighlightingOnLoad()
         }
     });
@@ -47,6 +45,7 @@ function submit() {
             content:$("#content").val(),
         },
     });
+    // alert("调用成功")
     localStorage.setItem("posId",$("#poster").val())
 
 }
@@ -57,19 +56,31 @@ function getUrl() {
         dataType: 'JSON',
         success: function (data) {
             str  = data.url
+            console.log("getUrl ",data.url)
             exhibit = "/" + data.url
-            // alert(exhibit)
             localStorage.setItem("exhibit",exhibit)
             $("#pasteHref").attr("href", exhibit)
-            // windows.location.href=exhibit;
             localStorage.setItem("url",str)
+            Insert()
+            // console.log("本地保存 ",localStorage.getItem("url"))
         }
     });
 }
-
+function copy(text){
+    var textareaC = document.createElement('textarea');
+    textareaC.setAttribute('readonly', 'readonly'); //设置只读属性防止手机上弹出软键盘
+    textareaC.value = text;
+    document.body.appendChild(textareaC); //将textarea添加为body子元素
+    textareaC.select();
+    var res = document.execCommand('copy');
+    document.body.removeChild(textareaC);//移除DOM元素
+    console.log("复制成功");
+    return res;
+}
 function Insert(){
+    // getUrl()
     var nextUrl =localStorage.getItem("url")
-    // alert(nextUrl)
+    console.log("查找 ",localStorage.getItem("url"))
     $.ajax({
         type:'POST',
         url:'/urlBind',
@@ -77,6 +88,19 @@ function Insert(){
         data:{
           url:nextUrl,
         },
+        // success: function (data) {
+        //     p = data.p
+        //     // alert("succcess")
+        //     var r=confirm(p)
+        //     if(r==true)
+        //     {
+        //         copy(p)
+        //         submit()
+        //         // getUrl()
+        //         // alert("复制成功")
+        //     }
+        //     // alert(p)
+        // },
 
     });
 }
@@ -90,7 +114,6 @@ function appendLang() {
     var selectSyn = localStorage.getItem("syntaxSelected")
     var cname = "language-" + selectSyn
     $("#getContent").attr("class",cname)
-    // class="language-"
 }
 function appendoption() {
     $("#select").append(
@@ -121,3 +144,11 @@ function appendoption() {
     )
 
 }
+// function Confirm() {
+//     var input = prompt("请输入您的密钥",'share key')
+//     $.ajax({
+//         type:"POST",
+//         url:"/confirm"
+//     });
+//
+// }

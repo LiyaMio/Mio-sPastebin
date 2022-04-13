@@ -14,8 +14,24 @@
     word-break: break-all;
     scrollbar-width:none
 }
-#Paste{
-    left:10%;
+#tag{
+    margin-top: 21.5%;
+    margin-left: 10%;
+    font-family: cursive;
+    color:rgb(240,240,244);
+}
+#Paste {
+    left: 10%;
+    bottom: 3%;
+    width: 80px;
+    height: 35px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    background-color: rgb(248, 249, 250);
+    line-height: 15px;
+    position: absolute;!important;
+}
+#show{
+    left:25%;
     bottom:3%;
     width: 80px;
     height: 35px;

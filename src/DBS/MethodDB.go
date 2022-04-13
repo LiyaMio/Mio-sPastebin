@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 )
-func StructInsert(url string,name string,code string){
+func StructInsert(url string,name string,code string,){
 	sqlStr := "insert into dataset(url,name,code,nowtime) values(?,?,?,?)"
 	now:=time.Now()
 	//formatTimeStr:=time.Unix(now,0).Format("20060102150405")
@@ -74,7 +74,7 @@ func deleteRowDemo(code string) {
 
 }
 func QueryMutiRowTime() {
-	sqlStr := "select code from dataset where SUBDATE(now(),interval 1 minute ) > nowtime"
+	sqlStr := "select code from dataset where SUBDATE(now(),interval 5 minute ) > nowtime"
 	var timeList []string
 	rows,err:= Db.Query(sqlStr)
 
@@ -106,5 +106,5 @@ func UpdateTime(url string){
 		fmt.Println("get RowsAffected failed: %v\n",err)
 		return
 	}
-	fmt.Println("update success,affected rows: %d\n",n)
+	fmt.Println("update success,affected rows: \n",n)
 }
